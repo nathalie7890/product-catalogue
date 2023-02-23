@@ -50,10 +50,20 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/ivImg"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="180dp"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_image" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload image"
+                    android:textSize="17sp"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/tertiary"
+                    android:layout_gravity="center"/>
 
                 <EditText
                     android:id="@+id/etTitle"
