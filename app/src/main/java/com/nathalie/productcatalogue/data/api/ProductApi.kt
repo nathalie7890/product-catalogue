@@ -11,6 +11,6 @@ interface ProductApi {
 
     @GET("/products/{id}")
     suspend fun getProductById(
-        @Path("id") searchById: Int
+        @Path("id") id: Int
     ): Product
 }

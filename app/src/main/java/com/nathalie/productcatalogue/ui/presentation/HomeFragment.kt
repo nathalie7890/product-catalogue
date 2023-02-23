@@ -6,10 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.nathalie.productcatalogue.MyApplication
 import com.nathalie.productcatalogue.R
 import com.nathalie.productcatalogue.data.api.RetrofitClient
@@ -18,28 +21,27 @@ import com.nathalie.productcatalogue.data.repository.ProductRepository
 import com.nathalie.productcatalogue.databinding.FragmentHomeBinding
 import com.nathalie.productcatalogue.ui.adapter.ProductAdapter
 import com.nathalie.productcatalogue.ui.viewModel.HomeViewModel
+import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private lateinit var adapter: ProductAdapter
-    private val viewModel: HomeViewModel by viewModels {
+    override val viewModel: HomeViewModel by viewModels {
         HomeViewModel.Provider(ProductRepository.getInstance(RetrofitClient.getInstance()))
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
-        return binding.root
+    override fun getLayoutResource() = R.layout.fragment_home
+
+    override fun onBindView(view: View, savedInstanceState: Bundle?) {
+        super.onBindView(view, savedInstanceState)
+//        viewModel.getProducts()
+        setupAdapter()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        setupAdapter()
+    override fun onBindData(view: View) {
+        super.onBindData(view)
         viewModel.products.observe(viewLifecycleOwner) {
             adapter.setProducts(it)
+            Log.d("debugging", it.toString())
         }
     }
 
@@ -53,7 +55,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.rvProducts.adapter = adapter
-        binding.rvProducts.layoutManager = layoutManager
+        binding?.rvProducts?.adapter = adapter
+        binding?.rvProducts?.layoutManager = layoutManager
     }
 }

@@ -7,18 +7,24 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.nathalie.productcatalogue.data.model.Product
 import com.nathalie.productcatalogue.data.repository.ProductRepository
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repo: ProductRepository) : ViewModel() {
+class HomeViewModel(private val repo: ProductRepository) : BaseViewModel() {
     val products: MutableLiveData<MutableList<Product>> = MutableLiveData()
 
     init {
         getProducts()
     }
+
+    //try catch block to catch error if api source is invalid
     fun getProducts() {
         viewModelScope.launch {
-            val res = repo.getAllProducts()
-            products.value = res.toMutableList()
+            val res = safeApiCall { repo.getAllProducts() }
+            res?.let {
+                products.value = it.toMutableList()
+            }
         }
     }
 
