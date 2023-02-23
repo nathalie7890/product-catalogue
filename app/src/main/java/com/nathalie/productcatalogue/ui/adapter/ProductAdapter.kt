@@ -30,13 +30,10 @@ class ProductAdapter(private var items: MutableList<Product>) :
             tvPrice.text = price
             tvDesc.text = item.description
 
-            if (URLUtil.isValidUrl(item.thumbnail)) {
-                Glide.with(holder.binding.root)
-                    .load(item.thumbnail).into(ivImg)
-            } else {
-                Glide.with(holder.binding.root)
-                    .load(R.drawable.no_image_found).into(ivImg)
-            }
+            Glide.with(holder.binding.root)
+                .load(item.thumbnail)
+                .placeholder(R.drawable.no_image_found)
+                .into(ivImg)
 
             cvProductItem.setOnClickListener {
                 listener?.onClick(item)

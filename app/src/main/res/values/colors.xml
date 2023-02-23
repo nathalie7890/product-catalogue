@@ -11,4 +11,5 @@
     <color name="accent">#f8b179</color>
     <color name="text">#f4f5fc</color>
     <color name="secondary">#2d3250</color>
+    <color name="tertiary">#6E77AE</color>
 </resources>

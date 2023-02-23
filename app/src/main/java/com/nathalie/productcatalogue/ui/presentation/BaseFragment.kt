@@ -26,6 +26,13 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         return inflater.inflate(getLayoutResource(), container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycleScope.launchWhenResumed {
+            viewModel.onViewCreated()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onBindView(view, savedInstanceState)

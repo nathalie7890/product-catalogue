@@ -14,7 +14,8 @@ import kotlinx.coroutines.launch
 class HomeViewModel(private val repo: ProductRepository) : BaseViewModel() {
     val products: MutableLiveData<MutableList<Product>> = MutableLiveData()
 
-    init {
+    override fun onViewCreated() {
+        super.onViewCreated()
         getProducts()
     }
 

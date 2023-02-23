@@ -1,5 +1,6 @@
 package com.nathalie.productcatalogue.ui.presentation
 
+
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -33,8 +34,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun onBindView(view: View, savedInstanceState: Bundle?) {
         super.onBindView(view, savedInstanceState)
-//        viewModel.getProducts()
         setupAdapter()
+
+        binding!!.btnAdd.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeToAddProduct()
+            NavHostFragment.findNavController(this).navigate(action)
+        }
     }
 
     override fun onBindData(view: View) {
@@ -46,7 +51,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     fun setupAdapter() {
-        val layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
+        val layoutManager = LinearLayoutManager(requireContext())
         adapter = ProductAdapter(mutableListOf())
         adapter.listener = object : ProductAdapter.Listener {
             override fun onClick(item: Product) {

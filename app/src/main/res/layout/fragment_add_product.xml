@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg"
+        tools:context=".ui.presentation.AddProductFragment">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/guidelineBottom"
+            app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+            app:layout_constraintTop_toBottomOf="@id/guidelineTop">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_image" />
+
+                <EditText
+                    android:id="@+id/etTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/product_input"
+                    android:hint="Title"
+                    android:inputType="textMultiLine"
+                    android:padding="8dp"
+                    android:textColor="@color/accent"
+                    android:textColorHint="@color/tertiary" />
+
+                <EditText
+                    android:id="@+id/etDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/product_input"
+                    android:hint="Description"
+                    android:inputType="textMultiLine"
+                    android:padding="8dp"
+                    android:textColor="@color/accent"
+                    android:textColorHint="@color/tertiary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:id="@+id/etPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/product_input"
+                        android:hint="Price"
+                        android:inputType="textMultiLine"
+                        android:padding="8dp"
+                        android:textColor="@color/accent"
+                        android:textColorHint="@color/tertiary" />
+
+                    <EditText
+                        android:id="@+id/etDiscount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/product_input"
+                        android:hint="Discount"
+                        android:inputType="textMultiLine"
+                        android:padding="8dp"
+                        android:textColor="@color/accent"
+                        android:textColorHint="@color/tertiary" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2">
+
+                    <EditText
+                        android:id="@+id/etRating"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/product_input"
+                        android:hint="Rating"
+                        android:inputType="textMultiLine"
+                        android:padding="8dp"
+                        android:textColor="@color/accent"
+                        android:textColorHint="@color/tertiary" />
+
+                    <EditText
+                        android:id="@+id/etStock"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/product_input"
+                        android:hint="Stock"
+                        android:inputType="textMultiLine"
+                        android:padding="8dp"
+                        android:textColor="@color/accent"
+                        android:textColorHint="@color/tertiary" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/etBrand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/product_input"
+                    android:hint="Brand"
+                    android:inputType="textMultiLine"
+                    android:padding="8dp"
+                    android:textColor="@color/accent"
+                    android:textColorHint="@color/tertiary" />
+
+                <EditText
+                    android:id="@+id/etCat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/product_input"
+                    android:hint="Category"
+                    android:inputType="textMultiLine"
+                    android:padding="8dp"
+                    android:textColor="@color/accent"
+                    android:textColorHint="@color/tertiary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnThumbnail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/tertiary"
+                        android:hint="Thumbnail"
+                        android:inputType="textMultiLine" />
+
+                    <TextView
+                        android:id="@+id/tvThumbnail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/thumbnail_textview"
+                        android:padding="8dp"
+                        android:textColor="@color/accent"
+                        android:textColorHint="@color/tertiary" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="@color/accent"
+                    android:text="Add"
+                    android:textColor="@color/black"
+                    app:cornerRadius="8dp" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -63,7 +63,7 @@
                         android:textColor="@color/text"
                         android:textSize="16sp"
                         app:cornerRadius="8dp"
-                        app:strokeColor="#BBDEFB"
+                        app:strokeColor="@color/bg"
                         app:strokeWidth="1dp" />
                 </LinearLayout>
 
