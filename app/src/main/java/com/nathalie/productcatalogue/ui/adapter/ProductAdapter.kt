@@ -2,13 +2,12 @@ package com.nathalie.productcatalogue.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.webkit.URLUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nathalie.productcatalogue.R
 import com.nathalie.productcatalogue.data.model.Product
 import com.nathalie.productcatalogue.databinding.ItemProductLayoutBinding
-import com.nathalie.productcatalogue.ui.utils.update
+import com.nathalie.productcatalogue.ui.utils.Utils.update
 
 class ProductAdapter(private var items: MutableList<Product>) :
     RecyclerView.Adapter<ProductAdapter.ItemProductHolder>() {
@@ -47,8 +46,9 @@ class ProductAdapter(private var items: MutableList<Product>) :
     }
 
     fun setProducts(items: MutableList<Product>) {
-        this.items = items
-        update(mutableListOf(), this.items) { product1, product2 ->
+        val oldItems = this.items
+        this.items = items.toMutableList()
+        update(oldItems, items) { product1, product2 ->
             product1.id == product2.id
         }
     }

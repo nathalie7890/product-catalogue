@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object RetrofitClient {
-    private const val baseUrl = "https://dummyjson.com"
+    private const val baseUrl = "https://63fc159b1ff79e133297a868.mockapi.io"
     private var retrofitInstance: ProductApi? = null
 
     fun getInstance(): ProductApi {

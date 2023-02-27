@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg"
-        tools:context=".ui.presentation.AddProductFragment">
+        tools:context=".ui.presentation.product.AddProductFragment">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineTop"
@@ -59,11 +59,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Upload image"
-                    android:textSize="17sp"
+                    android:layout_gravity="center"
                     android:layout_marginBottom="16dp"
+                    android:text="Upload image"
                     android:textColor="@color/tertiary"
-                    android:layout_gravity="center"/>
+                    android:textSize="17sp" />
 
                 <EditText
                     android:id="@+id/etTitle"
@@ -205,6 +205,7 @@
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAdd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

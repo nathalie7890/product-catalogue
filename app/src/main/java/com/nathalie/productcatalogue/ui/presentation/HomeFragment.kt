@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -32,9 +34,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun getLayoutResource() = R.layout.fragment_home
 
+
     override fun onBindView(view: View, savedInstanceState: Bundle?) {
         super.onBindView(view, savedInstanceState)
         setupAdapter()
+
+        setFragmentResultListener("finish_add_product") { _, result ->
+            val refresh = result.getBoolean("refresh")
+            if (refresh) {
+                viewModel.onRefresh()
+            }
+        }
+        setFragmentResultListener("finish_edit_product") { _, result ->
+            val refresh = result.getBoolean("refresh")
+            if (refresh) {
+                viewModel.onRefresh()
+            }
+        }
 
         binding!!.btnAdd.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeToAddProduct()
@@ -46,17 +62,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         super.onBindData(view)
         viewModel.products.observe(viewLifecycleOwner) {
             adapter.setProducts(it)
-            Log.d("debugging", it.toString())
         }
     }
+
+
 
     fun setupAdapter() {
         val layoutManager = LinearLayoutManager(requireContext())
         adapter = ProductAdapter(mutableListOf())
         adapter.listener = object : ProductAdapter.Listener {
             override fun onClick(item: Product) {
-                val action = HomeFragmentDirections.actionHomeToDetail(item.id)
-                NavHostFragment.findNavController(this@HomeFragment).navigate(action)
+                val action = item.id?.let { HomeFragmentDirections.actionHomeToDetail(it) }
+                if (action != null) {
+                    NavHostFragment.findNavController(this@HomeFragment).navigate(action)
+                }
             }
         }
 

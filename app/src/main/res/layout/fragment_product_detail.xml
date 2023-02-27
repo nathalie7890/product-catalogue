@@ -9,7 +9,7 @@
         android:background="@color/secondary"
         android:orientation="vertical"
 
-        tools:context=".ui.presentation.ProductDetailFragment">
+        tools:context=".ui.presentation.product.ProductDetailFragment">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -102,10 +102,11 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEdit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/accent"
-                        android:text="Add to Cart"
+                        android:text="Edit"
                         android:textColor="@color/black"
                         app:cornerRadius="8dp" />
                 </LinearLayout>

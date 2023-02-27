@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repo: ProductRepository) : BaseViewModel() {
     val products: MutableLiveData<MutableList<Product>> = MutableLiveData()
+    val refreshProducts: MutableLiveData<Boolean> = MutableLiveData(false)
 
     override fun onViewCreated() {
         super.onViewCreated()
@@ -27,6 +28,13 @@ class HomeViewModel(private val repo: ProductRepository) : BaseViewModel() {
                 products.value = it.toMutableList()
             }
         }
+    }
+
+    fun onRefresh() {
+        getProducts()
+    }
+    fun shouldRefreshProducts(refresh: Boolean) {
+        refreshProducts.value = refresh
     }
 
     class Provider(private val repo: ProductRepository) : ViewModelProvider.Factory {

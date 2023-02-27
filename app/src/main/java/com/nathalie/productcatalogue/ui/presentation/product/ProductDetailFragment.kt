@@ -1,20 +1,16 @@
-package com.nathalie.productcatalogue.ui.presentation
+package com.nathalie.productcatalogue.ui.presentation.product
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.webkit.URLUtil
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.nathalie.productcatalogue.R
 import com.nathalie.productcatalogue.data.api.RetrofitClient
 import com.nathalie.productcatalogue.data.repository.ProductRepository
 import com.nathalie.productcatalogue.databinding.FragmentProductDetailBinding
-import com.nathalie.productcatalogue.ui.viewModel.HomeViewModel
+import com.nathalie.productcatalogue.ui.presentation.BaseFragment
 import com.nathalie.productcatalogue.ui.viewModel.ProductDetailViewModel
 
 class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
@@ -29,6 +25,14 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
 
         val navArgs: ProductDetailFragmentArgs by navArgs()
         viewModel.getProductById(navArgs.id)
+
+        binding?.run {
+            btnEdit.setOnClickListener {
+                val action =
+                    ProductDetailFragmentDirections.actionProductDetailToEditProduct(navArgs.id)
+                NavHostFragment.findNavController(this@ProductDetailFragment).navigate(action)
+            }
+        }
     }
 
     override fun onBindData(view: View) {
@@ -45,7 +49,7 @@ class ProductDetailFragment : BaseFragment<FragmentProductDetailBinding>() {
                 tvRating.text = rating
 
                 Glide.with(requireContext())
-                    .load(it.images[0])
+                    .load(it.thumbnail)
                     .placeholder(R.drawable.no_image_found)
                     .into(ivImg)
             }

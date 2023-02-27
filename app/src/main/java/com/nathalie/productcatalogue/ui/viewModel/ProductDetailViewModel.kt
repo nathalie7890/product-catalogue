@@ -13,8 +13,10 @@ class ProductDetailViewModel(private val repo: ProductRepository) : BaseViewMode
 
     fun getProductById(id: Int) {
         viewModelScope.launch {
-            val res = repo.getProductById(id)
-            product.value = res
+            val res = safeApiCall { repo.getProductById(id) }
+            res?.let {
+                product.value = it
+            }
         }
     }
 

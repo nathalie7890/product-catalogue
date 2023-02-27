@@ -1,15 +1,14 @@
 package com.nathalie.productcatalogue.data.model
 
 data class Product(
+    val id: Int?,
+    val title: String,
     val brand: String,
     val category: String,
     val description: String,
-    val discountPercentage: Double,
-    val id: Int,
-    val images: List<String>,
-    val price: Int,
-    val rating: Double,
+    val price: Float,
+    val discountPercentage: Float,
+    val rating: Float,
     val stock: Int,
     val thumbnail: String,
-    val title: String
 )
