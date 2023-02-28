@@ -6,9 +6,13 @@ import androidx.lifecycle.viewModelScope
 import com.nathalie.productcatalogue.data.model.Product
 import com.nathalie.productcatalogue.data.repository.ProductRepository
 import com.nathalie.productcatalogue.ui.utils.Utils.validate
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddProductViewModel(repo: ProductRepository) : BaseProductViewModel(repo) {
+@HiltViewModel
+class AddProductViewModel @Inject constructor(repo: ProductRepository) :
+    BaseProductViewModel(repo) {
 
     fun addProduct(
         prod: Product

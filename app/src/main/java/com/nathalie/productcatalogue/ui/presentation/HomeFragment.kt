@@ -24,13 +24,13 @@ import com.nathalie.productcatalogue.data.repository.ProductRepository
 import com.nathalie.productcatalogue.databinding.FragmentHomeBinding
 import com.nathalie.productcatalogue.ui.adapter.ProductAdapter
 import com.nathalie.productcatalogue.ui.viewModel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private lateinit var adapter: ProductAdapter
-    override val viewModel: HomeViewModel by viewModels {
-        HomeViewModel.Provider(ProductRepository.getInstance(RetrofitClient.getInstance()))
-    }
+    override val viewModel: HomeViewModel by viewModels()
 
     override fun getLayoutResource() = R.layout.fragment_home
 
@@ -52,6 +52,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
         }
 
+        setFragmentResultListener("finish_delete_product") { _, result ->
+            val refresh = result.getBoolean("refresh")
+            if (refresh) {
+                viewModel.onRefresh()
+            }
+        }
+
         binding!!.btnAdd.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeToAddProduct()
             NavHostFragment.findNavController(this).navigate(action)
@@ -64,7 +71,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             adapter.setProducts(it)
         }
     }
-
 
 
     fun setupAdapter() {

@@ -11,12 +11,12 @@ import com.nathalie.productcatalogue.data.repository.ProductRepository
 import com.nathalie.productcatalogue.ui.presentation.BaseProductFragment
 
 import com.nathalie.productcatalogue.ui.presentation.product.viewModel.AddProductViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class AddProductFragment : BaseProductFragment() {
-    override val viewModel: AddProductViewModel by viewModels {
-        AddProductViewModel.Provider(ProductRepository.getInstance(RetrofitClient.getInstance()))
-    }
+    override val viewModel: AddProductViewModel by viewModels()
 
     override fun onBindView(view: View, savedInstanceState: Bundle?) {
         super.onBindView(view, savedInstanceState)

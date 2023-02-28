@@ -1,4 +1,4 @@
-package com.nathalie.productcatalogue.ui.viewModel
+package com.nathalie.productcatalogue.ui.presentation.product.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -6,12 +6,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.nathalie.productcatalogue.data.model.Product
 import com.nathalie.productcatalogue.data.repository.ProductRepository
+import com.nathalie.productcatalogue.ui.viewModel.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProductDetailViewModel(private val repo: ProductRepository) : BaseViewModel() {
+@HiltViewModel
+class ProductDetailViewModel @Inject constructor(repo: ProductRepository) :
+    BaseProductViewModel(repo) {
     var product = MutableLiveData<Product>()
 
-    fun getProductById(id: Int) {
+    fun getProductById(id: String) {
         viewModelScope.launch {
             val res = safeApiCall { repo.getProductById(id) }
             res?.let {
@@ -20,9 +25,10 @@ class ProductDetailViewModel(private val repo: ProductRepository) : BaseViewMode
         }
     }
 
-    class Provider(private val repo: ProductRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return ProductDetailViewModel(repo) as T
+    fun deleteProduct(id: String) {
+        viewModelScope.launch {
+            safeApiCall { repo.deleteProduct(id) }
+            finish.emit(Unit)
         }
     }
 }

@@ -10,12 +10,15 @@ interface ProductApi {
 
     @GET("/products/{id}")
     suspend fun getProductById(
-        @Path("id") id: Int
+        @Path("id") id: String
     ): Product
 
     @POST("/products")
     suspend fun addProduct(@Body product: Product)
 
     @PUT("/products/{id}")
-    suspend fun editProduct(@Path("id") id: Int, @Body product: Product)
+    suspend fun editProduct(@Path("id") id: String, @Body product: Product)
+
+    @DELETE("/products/{id}")
+    suspend fun deleteProduct(@Path("id") id: String)
 }

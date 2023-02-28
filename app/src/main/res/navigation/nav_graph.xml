@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_product_detail">
         <argument
             android:name="id"
-            app:argType="integer" />
+            app:argType="string" />
         <action
             android:id="@+id/action_productDetail_to_editProduct"
             app:destination="@id/editProductFragment2" />
@@ -43,6 +43,6 @@
         tools:layout="@layout/fragment_add_product">
         <argument
             android:name="id"
-            app:argType="integer" />
+            app:argType="string" />
     </fragment>
 </navigation>

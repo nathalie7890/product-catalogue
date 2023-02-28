@@ -9,7 +9,7 @@ class ProductRepository(private val productApi: ProductApi) {
         return productApi.getAllProducts()
     }
 
-    suspend fun getProductById(id: Int): Product {
+    suspend fun getProductById(id: String): Product {
         return productApi.getProductById(id)
     }
 
@@ -17,8 +17,12 @@ class ProductRepository(private val productApi: ProductApi) {
         return productApi.addProduct(product)
     }
 
-    suspend fun editProduct(id: Int, product: Product) {
+    suspend fun editProduct(id: String, product: Product) {
         return productApi.editProduct(id, product)
+    }
+
+    suspend fun deleteProduct(id: String) {
+        return productApi.deleteProduct(id)
     }
 
     companion object {

@@ -7,11 +7,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.nathalie.productcatalogue.data.model.Product
 import com.nathalie.productcatalogue.data.repository.ProductRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(private val repo: ProductRepository) : BaseViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val repo: ProductRepository) : BaseViewModel() {
     val products: MutableLiveData<MutableList<Product>> = MutableLiveData()
     val refreshProducts: MutableLiveData<Boolean> = MutableLiveData(false)
 
@@ -33,14 +36,8 @@ class HomeViewModel(private val repo: ProductRepository) : BaseViewModel() {
     fun onRefresh() {
         getProducts()
     }
+
     fun shouldRefreshProducts(refresh: Boolean) {
         refreshProducts.value = refresh
     }
-
-    class Provider(private val repo: ProductRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return HomeViewModel(repo) as T
-        }
-    }
-
 }

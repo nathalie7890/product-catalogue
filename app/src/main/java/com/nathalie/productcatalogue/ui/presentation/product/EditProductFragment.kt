@@ -17,19 +17,19 @@ import com.nathalie.productcatalogue.data.repository.ProductRepository
 import com.nathalie.productcatalogue.ui.presentation.BaseProductFragment
 import com.nathalie.productcatalogue.ui.presentation.product.viewModel.AddProductViewModel
 import com.nathalie.productcatalogue.ui.presentation.product.viewModel.EditProductViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class EditProductFragment : BaseProductFragment() {
-    override val viewModel: EditProductViewModel by viewModels {
-        EditProductViewModel.Provider(ProductRepository.getInstance(RetrofitClient.getInstance()))
-    }
+    override val viewModel: EditProductViewModel by viewModels()
 
 
     override fun onBindView(view: View, savedInstanceState: Bundle?) {
         super.onBindView(view, savedInstanceState)
 
         val navArgs: EditProductFragmentArgs by navArgs()
-        viewModel.getProductById(navArgs.id)
+        viewModel.getProductById(navArgs.id.toString())
 
         viewModel.product.observe(viewLifecycleOwner) {
             binding?.run {
