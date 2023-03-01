@@ -1,7 +1,6 @@
 package com.nathalie.productcatalogue.ui.presentation.product
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
@@ -10,8 +9,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.nathalie.productcatalogue.R
-import com.nathalie.productcatalogue.data.api.RetrofitClient
-import com.nathalie.productcatalogue.data.repository.ProductRepository
 import com.nathalie.productcatalogue.databinding.FragmentProductDetailBinding
 import com.nathalie.productcatalogue.ui.presentation.BaseFragment
 import com.nathalie.productcatalogue.ui.presentation.product.viewModel.ProductDetailViewModel

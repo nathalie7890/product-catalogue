@@ -1,8 +1,13 @@
 package com.nathalie.productcatalogue.di
 
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.nathalie.productcatalogue.data.api.ProductApi
 import com.nathalie.productcatalogue.data.api.RetrofitClient
+import com.nathalie.productcatalogue.data.repository.FireStoreProductRepository
 import com.nathalie.productcatalogue.data.repository.ProductRepository
+import com.nathalie.productcatalogue.data.repository.ProductRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,7 +29,7 @@ object MyAppDependency {
         .addInterceptor(
             Interceptor {
                 val builder = it.request().newBuilder()
-                builder.addHeader("X-Auth-Token", "12345")
+//                builder.addHeader("X-Auth-Token", "12345")
                 return@Interceptor it.proceed(builder.build())
             }
         )
@@ -57,9 +62,23 @@ object MyAppDependency {
             .create(ProductApi::class.java)
     }
 
+    //comment this to use retrofit
+//    @Provides
+//    @Singleton
+//    fun getProductRepository(productApi: ProductApi): ProductRepository {
+//        return ProductRepositoryImpl(productApi)
+//    }
+
     @Provides
     @Singleton
-    fun getProductRepository(productApi: ProductApi): ProductRepository {
-        return ProductRepository(productApi)
+    fun getFireStore(): FirebaseFirestore {
+        return Firebase.firestore
+    }
+
+    //comment this to use firebase
+    @Provides
+    @Singleton
+    fun getFireStoreProductRepository(db: FirebaseFirestore): ProductRepository {
+        return FireStoreProductRepository(db.collection("products"))
     }
 }

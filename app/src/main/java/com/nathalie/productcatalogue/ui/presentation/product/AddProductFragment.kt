@@ -5,9 +5,6 @@ import android.view.View
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.nathalie.productcatalogue.R
-import com.nathalie.productcatalogue.data.api.RetrofitClient
-import com.nathalie.productcatalogue.data.repository.ProductRepository
 import com.nathalie.productcatalogue.ui.presentation.BaseProductFragment
 
 import com.nathalie.productcatalogue.ui.presentation.product.viewModel.AddProductViewModel

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "246271833671",
+    "project_id": "productcatalogue-133fb",
+    "storage_bucket": "productcatalogue-133fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246271833671:android:f540ebdf15cc4f9ed4a362",
+        "android_client_info": {
+          "package_name": "com.nathalie.productcatalogue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246271833671-88kfcq0bn4gniiip3982558hfavjbp7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjD4h59GUFiS1G_b3s6ALu_lfyLtUOFxE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246271833671-88kfcq0bn4gniiip3982558hfavjbp7t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

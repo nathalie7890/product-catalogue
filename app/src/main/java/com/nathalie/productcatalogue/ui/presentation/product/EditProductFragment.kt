@@ -1,21 +1,14 @@
 package com.nathalie.productcatalogue.ui.presentation.product
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.nathalie.productcatalogue.R
-import com.nathalie.productcatalogue.data.api.RetrofitClient
-import com.nathalie.productcatalogue.data.repository.ProductRepository
 import com.nathalie.productcatalogue.ui.presentation.BaseProductFragment
-import com.nathalie.productcatalogue.ui.presentation.product.viewModel.AddProductViewModel
 import com.nathalie.productcatalogue.ui.presentation.product.viewModel.EditProductViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

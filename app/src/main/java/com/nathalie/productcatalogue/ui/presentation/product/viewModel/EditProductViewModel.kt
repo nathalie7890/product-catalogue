@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.nathalie.productcatalogue.data.model.Product
+import com.nathalie.productcatalogue.data.repository.FireStoreProductRepository
 import com.nathalie.productcatalogue.data.repository.ProductRepository
+import com.nathalie.productcatalogue.data.repository.ProductRepositoryImpl
 import com.nathalie.productcatalogue.ui.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -37,7 +39,7 @@ class EditProductViewModel @Inject constructor(repo: ProductRepository) :
         )
         viewModelScope.launch {
             if (validationStatus) {
-                safeApiCall { repo.editProduct(id, prod) }
+                safeApiCall { repo.updateProduct(id, prod) }
                 finish.emit(Unit)
             } else {
                 viewModelScope.launch {
@@ -47,10 +49,4 @@ class EditProductViewModel @Inject constructor(repo: ProductRepository) :
         }
     }
 
-
-    class Provider(private val repository: ProductRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return EditProductViewModel(repository) as T
-        }
-    }
 }
