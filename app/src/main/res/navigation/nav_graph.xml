@@ -45,4 +45,10 @@
             android:name="id"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.nathalie.productcatalogue.ui.presentation.authentication.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login"
+        />
 </navigation>
